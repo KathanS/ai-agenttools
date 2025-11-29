@@ -34,7 +34,7 @@ all = ["openpyxl"]
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["Tools*"]
+include = ["agenttools*"]
 
 [tool.setuptools.package-data]
-Tools = ["py.typed"]
+agenttools = ["py.typed"]

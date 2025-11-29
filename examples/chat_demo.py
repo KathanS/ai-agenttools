@@ -9,11 +9,7 @@ from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, OpenAICha
 from semantic_kernel.contents.chat_history import ChatHistory
 from semantic_kernel.connectors.ai.function_choice_behavior import FunctionChoiceBehavior
 
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.insert(0, ROOT_DIR)
-from Tools.file_io_tools import FileIOTools
-from Tools.excel_tools import ExcelTools
-from Tools.shell_tool import ShellTool
+from agenttools import FileIOTools, ExcelTools, ShellTool
 
 load_dotenv()
 
