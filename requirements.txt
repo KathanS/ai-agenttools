@@ -1,0 +1,6 @@
+# Azure OpenAI and Semantic Kernel
+semantic-kernel
+python-dotenv
+
+# Excel operations
+openpyxl
