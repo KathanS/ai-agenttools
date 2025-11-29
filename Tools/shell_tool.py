@@ -10,6 +10,7 @@ class ShellTool:
 
     @kernel_function(description="Run a shell command (with a small disallow list) and return JSON {exit_code, stdout, stderr}. Optionally run in a given working directory (cwd).")
     def run_shell(self, command: str, timeout_sec: int = 600, cwd: str | None = None) -> str:
+        """Executes shell commands with timeout and blocks dangerous operations like recursive deletes."""
         cmd_lc = (command or "").strip().lower()
         deny_patterns = [
             "remove-item -recurse",
@@ -38,5 +39,5 @@ class ShellTool:
                 "stderr": proc.stderr,
                 "cwd": cwd or "",
             })
-        except Exception as e:
-            return json.dumps({"error": str(e)})
+        except Exception as err:
+            return json.dumps({"error": str(err)})
