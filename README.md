@@ -16,7 +16,7 @@ pip install agenttools[excel]
 ## Usage
 
 ```python
-from Tools import FileIOTools, ExcelTools, ShellTool
+from agenttools import FileIOTools, ExcelTools, ShellTool
 from semantic_kernel import Kernel
 
 kernel = Kernel()
