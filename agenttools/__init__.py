@@ -3,6 +3,20 @@
 from .file_io_tools import FileIOTools
 from .excel_tools import ExcelTools
 from .shell_tool import ShellTool
+from .word_tools import WordTools
+from .powerpoint_tools import PowerPointTools
+from .pdf_tools import PDFTools
+from .csv_tools import CSVTools
+from .web_tools import WebTools
 
-__version__ = "0.1.0"
-__all__ = ["FileIOTools", "ExcelTools", "ShellTool"]
+__version__ = "0.2.0"
+__all__ = [
+    "FileIOTools",
+    "ExcelTools",
+    "ShellTool",
+    "WordTools",
+    "PowerPointTools",
+    "PDFTools",
+    "CSVTools",
+    "WebTools"
+]

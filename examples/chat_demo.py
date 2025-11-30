@@ -9,7 +9,16 @@ from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, OpenAICha
 from semantic_kernel.contents.chat_history import ChatHistory
 from semantic_kernel.connectors.ai.function_choice_behavior import FunctionChoiceBehavior
 
-from agenttools import FileIOTools, ExcelTools, ShellTool
+from agenttools import (
+    FileIOTools, 
+    ExcelTools, 
+    ShellTool,
+    WordTools,
+    PowerPointTools,
+    PDFTools,
+    CSVTools,
+    WebTools
+)
 
 load_dotenv()
 
@@ -29,6 +38,11 @@ async def main():
     kernel.add_plugin(FileIOTools(), plugin_name="file_io_tools")
     kernel.add_plugin(ExcelTools(), plugin_name="excel_tools")
     kernel.add_plugin(ShellTool(), plugin_name="shell_tool")
+    kernel.add_plugin(WordTools(), plugin_name="word_tools")
+    kernel.add_plugin(PowerPointTools(), plugin_name="powerpoint_tools")
+    kernel.add_plugin(PDFTools(), plugin_name="pdf_tools")
+    kernel.add_plugin(CSVTools(), plugin_name="csv_tools")
+    kernel.add_plugin(WebTools(), plugin_name="web_tools")
 
     # Create a per-run sandbox directory using SANDBOX_ROOT_DIR
     sandbox_root_dir = os.getenv("SANDBOX_ROOT_DIR")

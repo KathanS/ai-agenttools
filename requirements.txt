@@ -4,3 +4,20 @@ python-dotenv
 
 # Excel operations
 openpyxl
+
+# Word operations
+python-docx
+
+# PowerPoint operations
+python-pptx
+
+# PDF operations
+PyPDF2
+reportlab
+
+# CSV and data operations
+pandas
+
+# Web scraping and HTTP
+requests
+beautifulsoup4
