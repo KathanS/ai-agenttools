@@ -1,0 +1,11 @@
+# CODEOWNERS file
+# These owners will be the default owners for everything in the repo.
+# They will be requested for review when someone opens a pull request.
+
+# Global code owners - all files require approval from @KathanS
+* @KathanS
+
+# Specific ownership for critical files
+/.github/workflows/* @KathanS
+/pyproject.toml @KathanS
+/agenttools/__init__.py @KathanS
