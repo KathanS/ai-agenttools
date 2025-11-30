@@ -4,6 +4,8 @@
 
 AI AgentTools is a comprehensive, open-source toolkit that gives AI agents the hands and eyes they need to interact with the digital world. From automating office workflows to web scraping and data analysis, we're building the foundational layer that transforms conversational AI into productive assistants capable of real-world tasks. Our vision is a future where AI agents seamlessly collaborate with humans, handling the repetitive and complex, freeing people to focus on creativity and strategy.
 
+> 🚀 **Now available on PyPI!** Install with `pip install ai-agenttools`
+
 ---
 
 Comprehensive Semantic Kernel plugins for AI agents to perform PC tasks: File I/O, Office documents (Excel, Word, PowerPoint), PDF operations, CSV/data manipulation, web scraping, and shell commands.
