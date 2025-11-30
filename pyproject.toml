@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-agenttools"
+version = "0.2.1"
+description = "Semantic Kernel plugins for AI agents: File I/O, Excel, Word, PowerPoint, PDF, CSV, Web scraping, and Shell commands"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "CC-BY-NC-4.0"}
+authors = [
+    {name = "Kathan Sanghavi", email = "kathansanghavi@gmail.com"}
+]
+keywords = ["semantic-kernel", "ai", "agents", "tools", "excel", "word", "powerpoint", "pdf", "csv", "web-scraping"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: Other/Proprietary License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "semantic-kernel",
+]
+
+[project.optional-dependencies]
+excel = ["openpyxl"]
+word = ["python-docx"]
+powerpoint = ["python-pptx"]
+pdf = ["PyPDF2", "reportlab"]
+csv = ["pandas"]
+web = ["requests", "beautifulsoup4"]
+office = ["openpyxl", "python-docx", "python-pptx"]
+all = ["openpyxl", "python-docx", "python-pptx", "PyPDF2", "reportlab", "pandas", "requests", "beautifulsoup4"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agenttools*"]
+
+[tool.setuptools.package-data]
+agenttools = ["py.typed"]
