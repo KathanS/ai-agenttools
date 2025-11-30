@@ -1,16 +1,81 @@
 name: Publish Python Package
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'pyproject.toml'
   release:
     types: [published]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    outputs:
+      version-changed: ${{ steps.check.outputs.changed }}
+      new-version: ${{ steps.check.outputs.version }}
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+    
+    - name: Check if version changed
+      id: check
+      run: |
+        # Get current version
+        CURRENT_VERSION=$(grep '^version = ' pyproject.toml | sed 's/version = "\(.*\)"/\1/')
+        
+        # Get previous version
+        git checkout HEAD~1 -- pyproject.toml 2>/dev/null || true
+        PREVIOUS_VERSION=$(grep '^version = ' pyproject.toml | sed 's/version = "\(.*\)"/\1/' || echo "0.0.0")
+        
+        # Restore current version
+        git checkout HEAD -- pyproject.toml
+        
+        echo "Previous version: $PREVIOUS_VERSION"
+        echo "Current version: $CURRENT_VERSION"
+        
+        if [ "$CURRENT_VERSION" != "$PREVIOUS_VERSION" ]; then
+          echo "changed=true" >> $GITHUB_OUTPUT
+          echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "Version changed from $PREVIOUS_VERSION to $CURRENT_VERSION"
+        else
+          echo "changed=false" >> $GITHUB_OUTPUT
+          echo "Version unchanged"
+        fi
+
+  create-release:
+    needs: check-version
+    runs-on: ubuntu-latest
+    if: needs.check-version.outputs.version-changed == 'true'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ needs.check-version.outputs.new-version }}
+        release_name: v${{ needs.check-version.outputs.new-version }}
+        body: |
+          Release version ${{ needs.check-version.outputs.new-version }}
+          
+          See [CHANGELOG](https://github.com/${{ github.repository }}/blob/main/README.md) for details.
+        draft: false
+        prerelease: false
+
   deploy:
     runs-on: ubuntu-latest
-    if: github.event.release.target_commitish == 'main'
+    if: github.event_name == 'release' || needs.check-version.outputs.version-changed == 'true'
+    needs: [check-version, create-release]
     
     steps:
     - uses: actions/checkout@v4
@@ -20,7 +85,8 @@ jobs:
       with:
         python-version: '3.x'
     
-    - name: Verify version matches tag
+    - name: Verify version matches tag (for release events)
+      if: github.event_name == 'release'
       run: |
         TAG_VERSION=${GITHUB_REF#refs/tags/v}
         PKG_VERSION=$(grep '^version = ' pyproject.toml | sed 's/version = "\(.*\)"/\1/')
