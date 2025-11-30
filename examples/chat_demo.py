@@ -30,11 +30,11 @@ async def main():
     kernel.add_plugin(ExcelTools(), plugin_name="excel_tools")
     kernel.add_plugin(ShellTool(), plugin_name="shell_tool")
 
-    # Create a per-run sandbox directory using PLAYGROUND_ROOT_DIR
-    playground_root_dir = os.getenv("PLAYGROUND_ROOT_DIR")
-    base_dir = os.path.join(playground_root_dir, f"playground{uuid.uuid4().hex}")
+    # Create a per-run sandbox directory using SANDBOX_ROOT_DIR
+    sandbox_root_dir = os.getenv("SANDBOX_ROOT_DIR")
+    base_dir = os.path.join(sandbox_root_dir, f"sandbox{uuid.uuid4().hex}")
     os.makedirs(base_dir, exist_ok=True)
-    print(f"Sandbox base_dir: {base_dir}")
+    print(f"Sandbox directory: {base_dir}")
 
     tools = []
     for pname, plugin in kernel.plugins.items():
@@ -72,7 +72,7 @@ async def main():
 
         assistant_message = str(response[0]) if response else "No response"
         chat_history.add_assistant_message(assistant_message)
-        print(f"Sundae: {assistant_message}\n")
+        print(f"Agent: {assistant_message}\n")
 
 if __name__ == "__main__":
     asyncio.run(main())
