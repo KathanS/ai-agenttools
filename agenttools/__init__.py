@@ -9,7 +9,7 @@ from .pdf_tools import PDFTools
 from .csv_tools import CSVTools
 from .web_tools import WebTools
 
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 __all__ = [
     "FileIOTools",
     "ExcelTools",

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ai-agenttools"
-version = "0.2.1"
+version = "0.2.2"
 description = "Semantic Kernel plugins for AI agents: File I/O, Excel, Word, PowerPoint, PDF, CSV, Web scraping, and Shell commands"
 readme = "README.md"
 requires-python = ">=3.9"
