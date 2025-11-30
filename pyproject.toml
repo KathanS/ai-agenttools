@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "agenttools"
+name = "ai-agenttools"
 version = "0.1.0"
 description = "Semantic Kernel plugins for file I/O, Excel operations, and shell commands"
 readme = "README.md"
