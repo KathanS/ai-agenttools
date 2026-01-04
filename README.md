@@ -1,5 +1,7 @@
 # AI AgentTools
 
+[![Made with ❤️ for AI Agents](https://img.shields.io/badge/Made%20with%20%E2%9D%A4%EF%B8%8F-for%20AI%20Agents-blue)](https://github.com/KathanS/ai-agenttools)
+
 **Empowering AI agents to bridge the gap between intelligence and action.**
 
 AI AgentTools is a comprehensive, open-source toolkit that gives AI agents the hands and eyes they need to interact with the digital world. From automating office workflows to web scraping and data analysis, we're building the foundational layer that transforms conversational AI into productive assistants capable of real-world tasks. Our vision is a future where AI agents seamlessly collaborate with humans, handling the repetitive and complex, freeing people to focus on creativity and strategy.
